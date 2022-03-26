@@ -1,1 +1,1 @@
-web: gunicorn booleangenerator.wsgi --logfile -
+web: gunicorn booleangenerator.wsgi
