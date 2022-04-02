@@ -9,7 +9,7 @@ class BooleanForm (forms.Form):
     jobchoices = (
         ("developer", "Developer"),
         ("techlead", "Tech Lead"),
-        ("devops", "Dev Ops")
+        #("devops", "Dev Ops")
     )
     languagechoices = (
         ("portuguese","Portuguese"),
@@ -17,9 +17,9 @@ class BooleanForm (forms.Form):
         ("spanish", "Spanish")
     )
     levelchoices = (
-        ("1","Level 1"),
-        ("2","Level 2"),
-        ("3","Level 3"),
+        ("high","High"),
+        ("mid","Medium"),
+        ("low","Low"),
     )
     tech = forms.ChoiceField(choices=techchoices)
     job = forms.ChoiceField(choices=jobchoices)

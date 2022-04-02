@@ -1,4 +1,14 @@
-<h1>TESTE</h1>
+<h1>BOOLEAN CREATOR</h1>
+<br/>
+<p>Choose your tech, job and language and a boolean phrase will be generated for you</p>
+<p>The levels will vary the quality of your search</p>
+<p>High quality searches will bring high quality candidates, but in very low amount</p>
+<p>Low quality searches will bring low quality candidates, but in great quantity</p>
+<p> It is ideal to start with high quality, then proceed to low quality as your project advances</p>
+<a3>Good luck!</a3>
+<br/>
+<br/>
+
 
 <form method = "GET">
     {{ form }}
@@ -8,4 +18,16 @@
 </form>
 
 <br/>
-{{ boolean }}
+
+
+<p id="copy" style="margin: 18px;">{{ boolean }}</p>
+<button type="button" onclick="copyEvent('copy')">Copy</button>
+
+<script>
+    function copyEvent(id)
+    {
+        var str = document.getElementById(id);
+        window.getSelection().selectAllChildren(str);
+        document.execCommand("Copy")
+    }
+</script>

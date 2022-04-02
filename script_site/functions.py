@@ -12,50 +12,65 @@
 
 
 def booleanmaker(tech,job,language,level):
+    stackdict={"react": '"frontend" OR "front end"',
+                "python": '"backend" OR "back end"'}
     python_b = {
-        "1" : "This is a high level python search",
-        "2" : "This is a mid level python search",
-        "3" : "This is a low level python search"
+        # High: asks for python, the two biggest frameworks, and one of the other smaller frameworks
+        "high" : '("python" OR "phyton" OR "py") AND ("django") AND ("flask") AND ("py*") AND ',
+        # Medium: asks for python and one of the frameworks
+        "mid" : '("python" OR "phyton" OR "py") AND ("django" OR "flask" OR "py*") AND ',
+        # Low: asks for python or one of its frameworks
+        "low" : '("python" OR "phyton" OR "py" OR "django" OR "flask" OR "py*") AND '
     }
     react_b = {
-        "1" : "This is a high level react search",
-        "2" : "This is a mid level react search",
-        "3" : "This is a low level react search"
+        # High: asks for react, javascript, and one of the many other frameworks
+        "high" : '("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js") AND ("*js") AND ',
+        # Medium: asks for react, javascript or other framework
+        "mid" : '("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ',
+        # Low: asks for react or javascript or any other framework even.
+        "low" : '("react" OR "reactjs" OR "react.js" OR "javascript" OR "js" OR "*js") AND '
     }
     tech_b = {'python':python_b,
               'react':react_b}
     developer_b = {
-        "1" : "This is a high level developer search",
-        "2" : "This is a mid level developer search",
-        "3" : "This is a low level developer search"
+        # High: Asks for the job title, max seniority, a professional focused on the tech, and fullstack
+        "high" : f'("developer" OR "coder" OR "software engineer") AND ("senior") AND ("{tech} developer" OR "{tech} engineer") AND ("fullstack") AND ',
+        # Mid: Asks for the job title or a professional of the tech, max or mid seniority, and the appropriate stack
+        "mid" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "mid") AND ({stackdict[tech]}) AND ',
+        # Low: Asks for the job title or professional of the tech
+        "low" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND '
     }
     devops_b = {
-        "1" : "This is a high level devops search",
-        "2" : "This is a mid level devops search",
-        "3" : "This is a low level devops search"
+        "high" : "This is a high level devops search",
+        "mid" : "This is a mid level devops search",
+        "low" : "This is a low level devops search"
     }
     techlead_b = {
-        "1" : "This is a high level techlead search",
-        "2" : "This is a mid level techlead search",
-        "3" : "This is a low level techlead search"
+        # High: Asks for project leadership, leadership in the technology and max seniority
+        "high" : f'("techlead" OR "tech lead" OR "project management") AND ("{tech} lead" OR "{tech} leader") AND ("senior") AND ',
+        # Mid: Asks for projects leadership or in the tech, asks for max or mid seniority
+        "mid" : f'("techlead" OR "tech lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND ("senior" OR "mid") AND ',
+        # Low: Asks for project leadership or in the tech
+        "low" : f'("techlead" OR "tech lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND '
     }
     job_b = {'developer': developer_b,
            'devops': devops_b,
            'techlead':techlead_b}
+           # Tobe honest, i don't have many ideas on how to vary the language search, but i'll try
     english_b = {
-        "1": "This is a high level english search",
-        "2": "This is a mid level english search",
-        "3": "This is a low level english search"
+        "high": '("english" OR "ingles") AND ("fluent" OR "native speaker")',
+        "mid": '("english" OR "ingles")',
+        "low": '("english" OR "ingles")'
     }
     portuguese_b = {
-        "1": "This is a high level portuguese search",
-        "2": "This is a mid level portuguese search",
-        "3": "This is a low level portuguese search"
+        "high": '("portugues" OR "portugues") AND ("fluente" OR "nativo")',
+        "mid": '("portugues" OR "portugues")',
+        "low": '("portugues" OR "portugues")'
     }
     spanish_b = {
-        "1": "This is a high level spanish search",
-        "2": "This is a mid level spanish search",
-        "3": "This is a low level spanish search"
+        "high": '("spanish" OR "espanhol" OR "espanol") AND ("fluido" OR "nativo")',
+        "mid": '("spanish" OR "espanhol" OR "espanol")',
+        "low": '("spanish" OR "espanhol" OR "espanol")'
     }
     language_b = {'english':english_b,
                 'portuguese':portuguese_b,
