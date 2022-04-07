@@ -9,7 +9,7 @@ class BooleanForm (forms.Form):
     jobchoices = (
         ("developer", "Developer"),
         ("techlead", "Tech Lead"),
-        #("devops", "Dev Ops")
+        ("devops", "Dev Ops")
     )
     languagechoices = (
         ("portuguese","Portuguese"),

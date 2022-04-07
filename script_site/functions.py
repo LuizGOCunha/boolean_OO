@@ -28,8 +28,9 @@ def booleanmaker(tech,job,language,level):
         # Medium: asks for react, javascript or other framework
         "mid" : '("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ',
         # Low: asks for react or javascript or any other framework even.
-        "low" : '("react" OR "reactjs" OR "react.js" OR "javascript" OR "js" OR "*js") AND '
+        "low" : '("react" OR "reactjs" OR "react.js" OR "*js) AND (""javascript" OR "js") AND '
     }
+    # Dict of all tech's and their phrases to be used in the boolean
     tech_b = {'python':python_b,
               'react':react_b}
     developer_b = {
@@ -41,9 +42,12 @@ def booleanmaker(tech,job,language,level):
         "low" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND '
     }
     devops_b = {
-        "high" : "This is a high level devops search",
-        "mid" : "This is a mid level devops search",
-        "low" : "This is a low level devops search"
+        # High: Asks for knowledge in linux servers, in cloud, in some specific cloud providers, in server deployment applications, in databases and in network
+        "high" : '("linux" OR "servers" OR "debian") AND ("cloud") AND ("AWS" OR "Azure" OR "heroku") AND ("containers" OR "docker" OR "kubernetes") AND ("SQL" OR "databases") AND ("networks" OR "wireshark" OR "firewall") AND ',
+        # Mid: Asks for knowledge in general linux server deployment, in general cloud computing, server deployment applications and in network
+        "mid" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ("networks" OR "wireshark" OR "firewall")',
+        # Low: Asks for knowledge in general deployment and in network
+        "low" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete" OR "cloud" OR "AWS" OR "Azure" OR "heroku" ) AND ("networks" OR "wireshark" OR "firewalls")'
     }
     techlead_b = {
         # High: Asks for project leadership, leadership in the technology and max seniority
@@ -53,6 +57,7 @@ def booleanmaker(tech,job,language,level):
         # Low: Asks for project leadership or in the tech
         "low" : f'("techlead" OR "tech lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND '
     }
+    # Dict of all jobs and their phrases to be used in the boolean
     job_b = {'developer': developer_b,
            'devops': devops_b,
            'techlead':techlead_b}
@@ -72,8 +77,12 @@ def booleanmaker(tech,job,language,level):
         "mid": '("spanish" OR "espanhol" OR "espanol")',
         "low": '("spanish" OR "espanhol" OR "espanol")'
     }
+    # Dict of all languages and their phrases to be used in the boolean
     language_b = {'english':english_b,
                 'portuguese':portuguese_b,
                 'spanish':spanish_b}
-    boolean = tech_b[tech][level] + job_b[job][level] + language_b[language][level]
+    if job == 'devops':
+        boolean = job_b[job][level] + language_b[language][level]
+    else: 
+        boolean = tech_b[tech][level] + job_b[job][level] + language_b[language][level]
     return boolean
