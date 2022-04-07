@@ -45,9 +45,9 @@ def booleanmaker(tech,job,language,level):
         # High: Asks for knowledge in linux servers, in cloud, in some specific cloud providers, in server deployment applications, in databases and in network
         "high" : '("linux" OR "servers" OR "debian") AND ("cloud") AND ("AWS" OR "Azure" OR "heroku") AND ("containers" OR "docker" OR "kubernetes") AND ("SQL" OR "databases") AND ("networks" OR "wireshark" OR "firewall") AND ',
         # Mid: Asks for knowledge in general linux server deployment, in general cloud computing, server deployment applications and in network
-        "mid" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ("networks" OR "wireshark" OR "firewall")',
+        "mid" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ("networks" OR "wireshark" OR "firewall") AND ',
         # Low: Asks for knowledge in general deployment and in network
-        "low" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete" OR "cloud" OR "AWS" OR "Azure" OR "heroku" ) AND ("networks" OR "wireshark" OR "firewalls")'
+        "low" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete" OR "cloud" OR "AWS" OR "Azure" OR "heroku" ) AND ("networks" OR "wireshark" OR "firewalls") AND '
     }
     techlead_b = {
         # High: Asks for project leadership, leadership in the technology and max seniority
