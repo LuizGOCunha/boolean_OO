@@ -81,8 +81,9 @@ def booleanmaker(tech,job,language,level):
     language_b = {'english':english_b,
                 'portuguese':portuguese_b,
                 'spanish':spanish_b}
-    if job == 'devops':
-        boolean = job_b[job][level] + language_b[language][level]
-    else: 
-        boolean = tech_b[tech][level] + job_b[job][level] + language_b[language][level]
+    # This is taking into consideration that they would be searching for devops without tech, but now they're searching devops+tech, so...
+    # if job == 'devops':
+    #     boolean = job_b[job][level] + language_b[language][level]
+    # else: 
+    boolean = tech_b[tech][level] + job_b[job][level] + language_b[language][level]
     return boolean
