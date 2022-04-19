@@ -15,12 +15,12 @@ def booleanmaker(tech,job,language,level):
     stackdict={"react": '"frontend" OR "front end"',
                 "python": '"backend" OR "back end"'}
     python_b = {
-        # High: asks for python, the two biggest frameworks, and one of the other smaller frameworks
-        "high" : '("python" OR "phyton" OR "py") AND ("django") AND ("flask") AND ("py*") AND ',
+        # High: asks for python and the two biggest frameworks
+        "high" : '("python" OR "phyton" OR "py" OR "py*") AND ("django") AND ("flask") AND ',
         # Medium: asks for python and one of the frameworks
-        "mid" : '("python" OR "phyton" OR "py") AND ("django" OR "flask" OR "py*") AND ',
+        "mid" : '("python" OR "phyton" OR "py" OR "py*") AND ("django" OR "flask" OR "py*") AND ',
         # Low: asks for python or one of its frameworks
-        "low" : '("python" OR "phyton" OR "py" OR "django" OR "flask" OR "py*") AND '
+        "low" : '("python" OR "phyton" OR "py" OR "django") AND '
     }
     react_b = {
         # High: asks for react, javascript, and one of the many other frameworks
@@ -34,28 +34,28 @@ def booleanmaker(tech,job,language,level):
     tech_b = {'python':python_b,
               'react':react_b}
     developer_b = {
-        # High: Asks for the job title, max seniority, a professional focused on the tech, and fullstack
-        "high" : f'("developer" OR "coder" OR "software engineer") AND ("senior") AND ("{tech} developer" OR "{tech} engineer") AND ("fullstack") AND ',
+        # High: Asks for the job title or a professional of the tech, max seniority or fullstack
+        "high" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "fullstack") AND ',
         # Mid: Asks for the job title or a professional of the tech, max or mid seniority, and the appropriate stack
-        "mid" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "mid") AND ({stackdict[tech]}) AND ',
+        "mid" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "mid" OR {stackdict[tech]}) AND ',
         # Low: Asks for the job title or professional of the tech
         "low" : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND '
     }
     devops_b = {
-        # High: Asks for knowledge in linux servers, in cloud, in some specific cloud providers, in server deployment applications, in databases and in network
-        "high" : '("linux" OR "servers" OR "debian") AND ("cloud") AND ("AWS" OR "Azure" OR "heroku") AND ("containers" OR "docker" OR "kubernetes") AND ("SQL" OR "databases") AND ("networks" OR "wireshark" OR "firewall") AND ',
-        # Mid: Asks for knowledge in general linux server deployment, in general cloud computing, server deployment applications and in network
-        "mid" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ("networks" OR "wireshark" OR "firewall") AND ',
-        # Low: Asks for knowledge in general deployment and in network
-        "low" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete" OR "cloud" OR "AWS" OR "Azure" OR "heroku" ) AND ("networks" OR "wireshark" OR "firewalls") AND '
+        # High: Asks for knowledge in linux servers, in cloud, in some specific cloud providers, in server deployment applications and in databases
+        "high" : '("linux" OR "servers" OR "debian") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ("containers" OR "docker" OR "kubernetes") AND ("SQL" OR "databases") AND ',
+        # Mid: Asks for knowledge in general linux server deployment, in general cloud computing and server deployment applications
+        "mid" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ',
+        # Low: Asks for knowledge in general deployment
+        "low" : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete" OR "cloud" OR "AWS" OR "Azure" OR "heroku" ) AND '
     }
     techlead_b = {
-        # High: Asks for project leadership, leadership in the technology and max seniority
-        "high" : f'("techlead" OR "tech lead" OR "project management") AND ("{tech} lead" OR "{tech} leader") AND ("senior") AND ',
+        # High: Asks for project leadership or leadership in the technology and max seniority
+        "high" : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND ',
         # Mid: Asks for projects leadership or in the tech, asks for max or mid seniority
-        "mid" : f'("techlead" OR "tech lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND ("senior" OR "mid") AND ',
+        "mid" : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND ',
         # Low: Asks for project leadership or in the tech
-        "low" : f'("techlead" OR "tech lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND '
+        "low" : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND '
     }
     # Dict of all jobs and their phrases to be used in the boolean
     job_b = {'developer': developer_b,
