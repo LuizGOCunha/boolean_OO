@@ -28,7 +28,7 @@ def booleanmaker(tech,job,language,level):
         # Medium: asks for react, javascript or other framework
         "mid" : '("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ',
         # Low: asks for react or javascript or any other framework even.
-        "low" : '("react" OR "reactjs" OR "react.js" OR "*js) AND (""javascript" OR "js") AND '
+        "low" : '("react" OR "reactjs" OR "react.js" OR "*js") AND ("javascript" OR "js") AND '
     }
     # Dict of all tech's and their phrases to be used in the boolean
     tech_b = {'python':python_b,
