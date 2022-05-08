@@ -19,11 +19,42 @@
 
 <br/>
 
+<!-- Form for the javascript version -->
+
+<!--
+<form>
+    <label for="id_tech">Tech:</label>
+<select name="tech" id="id_tech">
+    <option value="react">React</option>
+    <option value="python">Python</option>
+</select>
+<label for="id_job">Job:</label>
+<select name="job" id="id_job">
+    <option value="developer">Developer</option>
+    <option value="techlead">Tech lead</option>
+    <option value="devops">DevOps</option>
+</select>
+<label for="id_language">Language:</label>
+<select name="language" id="id_language">
+    <option value="english">English</option>
+    <option value="portuguese">Portuguese</option>
+    <option value="spanish">Spanish</option>
+</select>
+<label for="id_level">Level:</label>
+<select name="level" id="id_level">
+    <option value="high">High</option>
+    <option value="mid">Mid</option>
+    <option value="low">Low</option>
+</select>
+<input type="submit" value="Finished">
+</form> 
+
+-->
 
 <p id="copy" style="margin: 18px;">{{ boolean }}</p>
 <button type="button" onclick="copyEvent('copy')">Copy</button>
 
-<script>
+<script src="./booleanmaker.js">
     function copyEvent(id)
     {
         var str = document.getElementById(id);

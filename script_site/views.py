@@ -11,7 +11,7 @@ def index (request):
     if request.GET:
         for values in request.GET:
             print(f"value = {values} : {request.GET[values]}")
-        context['boolean'] = functions.booleanmaker(request.GET["tech"], request.GET["job"],
+        context['boolean'] = functions.booleanmaker(request.GET["tech1"], request.GET["tech2"], request.GET["job"],
                                                     request.GET["language"], request.GET["level"])
 
 
