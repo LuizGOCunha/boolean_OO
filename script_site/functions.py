@@ -74,19 +74,19 @@ def booleanmaker(tech1,tech2,job,language,level):
     job_b = {'developer': developer_b,
            'devops': devops_b,
            'techlead':techlead_b}
-           # Tobe honest, i don't have many ideas on how to vary the language search, but i'll try
+           # Tobe honest, i don't have many ideas on how to vary the language search
     english_b = {
-        3: '("english" OR "ingles") AND ("fluent" OR "native speaker")',
+        3: '("english" OR "ingles")',
         2: '("english" OR "ingles")',
         1: '("english" OR "ingles")'
     }
     portuguese_b = {
-        3: '("portugues" OR "portugues") AND ("fluente" OR "nativo")',
+        3: '("portugues" OR "portugues")',
         2: '("portugues" OR "portugues")',
         1: '("portugues" OR "portugues")'
     }
     spanish_b = {
-        3: '("spanish" OR "espanhol" OR "espanol") AND ("fluido" OR "nativo")',
+        3: '("spanish" OR "espanhol" OR "espanol")',
         2: '("spanish" OR "espanhol" OR "espanol")',
         1: '("spanish" OR "espanhol" OR "espanol")'
     }
