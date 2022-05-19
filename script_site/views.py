@@ -17,5 +17,8 @@ def index (request):
 
     return render(request, 'index.html', context)
 
+def messagetemplates (request):
+    return render(request, 'messagetemplates.html')
+
 
 # Create your views here.

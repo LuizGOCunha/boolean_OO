@@ -1,0 +1,21 @@
+<h1>TEMPLATES</h1>
+<form onsubmit="createTemplate(); return false">
+    <label for="id_textarea">Your message here:</label>
+</br>
+    <textarea id="id_textarea" rows="10" cols="100"></textarea>
+    <input type="submit" value="Done">
+</form>
+
+<div id="new">
+
+</div>
+
+<script>
+    function createTemplate() {
+        var textArea = document.getElementById["id_textarea"].value;
+        var template = document.createElement("p");
+        template.appendChild(textArea);
+        var element = document.getElementById("new");
+        element.appendChild(template);
+    }
+</script>
