@@ -53,14 +53,14 @@ def booleanmaker(tech1,tech2,job,language,level):
         0 : '("react" OR "reactjs" OR "react.js" OR "*js") AND'
     }
     react_native_b = {
-        # High: asks for react native, react, javascript and redux
-        3 : '("react native" OR "react_native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ("redux" OR "reduxjs" OR "reduxjs") AND ',
+        # High: asks for react native, react, javascript, react navigation and redux
+        3 : '("react native" OR "react-native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ("react navigation" OR "react-navigation" OR "reactnavigation") AND ("redux" OR "reduxjs" OR "reduxjs") AND ',
         # Medium: asks for react native, react and javascript
-        2 : '("react native" OR "react_native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ',
+        2 : '("react native" OR "react-native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ("redux" OR "reduxjs" OR "reduxjs") AND ',
         # Low: asks for react native, react or javascript
-        1 : '("react native" OR "react_native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js" OR "javascript" OR "js" OR "*js") AND ',
+        1 : '("react native" OR "react-native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js" OR "javascript" OR "js" OR "*js") AND ',
         # Lowest: asks for anything react native
-        0 : '("react native" OR "react_native" OR "reactnative") AND '
+        0 : '("react native" OR "react-native" OR "reactnative") AND '
     }
     # Dict of all tech's and their phrases to be used in the boolean
     tech_b = {'python':python_b,
