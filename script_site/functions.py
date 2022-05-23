@@ -16,12 +16,21 @@
 def booleanmaker(tech1,tech2,job,language,level):
     # Turns level into integer so i can alter it as necessary without too much hassle
     level = int(level)
-    # Instantiate the tech variable, so i can create the dicts without unassignement errors
-    tech = ""
-    # Create stack variable that will also be used in the dict, default value will lead to fullstack option
+    # Give stack variable a default empty value so it doesn't raise an error
     stack = ""
+    # # Instantiate the tech variable so it doesn't raise a KeyError
+    tech = ""
+    if tech1:
+        tech = tech1
+    elif tech2:
+        tech = tech2
+    elif tech1 and tech2:
+        tech = ""
+
+    # Create stack variable that will also be used in the dict, default value will lead to fullstack option
     stackdict={"react": 'OR "frontend" OR "front end"',
                 "python": 'OR "backend" OR "back end"',
+                "react native": 'OR "frontend" OR "front end"',
                 "": ' OR "fullstack"'}
     python_b = {
         # High: asks for python and the two biggest frameworks
@@ -43,17 +52,20 @@ def booleanmaker(tech1,tech2,job,language,level):
         # Lowest: asks for anything react.
         0 : '("react" OR "reactjs" OR "react.js" OR "*js") AND'
     }
+    react_native_b = {
+        # High: asks for react native, react, javascript and redux
+        3 : '("react native" OR "react_native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ("redux" OR "reduxjs" OR "reduxjs") AND ',
+        # Medium: asks for react native, react and javascript
+        2 : '("react native" OR "react_native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js") AND ("javascript" OR "js" OR "*js") AND ',
+        # Low: asks for react native, react or javascript
+        1 : '("react native" OR "react_native" OR "reactnative") AND ("react" OR "reactjs" OR "react.js" OR "javascript" OR "js" OR "*js") AND ',
+        # Lowest: asks for anything react native
+        0 : '("react native" OR "react_native" OR "reactnative") AND '
+    }
     # Dict of all tech's and their phrases to be used in the boolean
     tech_b = {'python':python_b,
-              'react':react_b}
-    developer_b = {
-        # High: Asks for the job title or a professional of the tech, max seniority or fullstack
-        3 : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "fullstack") AND ',
-        # Mid: Asks for the job title or a professional of the tech, max or mid seniority, and the appropriate stack
-        2 : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "mid" {stackdict[stack]}) AND ',
-        # Low: Asks for the job title or professional of the tech
-        1 : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND '
-    }
+              'react':react_b,
+              'react native':react_native_b}
     devops_b = {
         # High: Asks for knowledge in linux servers, in cloud, in some specific cloud providers, in server deployment applications and in databases
         3 : '("linux" OR "servers" OR "debian") AND ("cloud" OR "AWS" OR "Azure" OR "heroku") AND ("containers" OR "docker" OR "kubernetes") AND ("SQL" OR "databases") AND ',
@@ -62,6 +74,14 @@ def booleanmaker(tech1,tech2,job,language,level):
         # Low: Asks for knowledge in general deployment
         1 : '("linux" OR "servers" OR "debian" OR "containers" OR "docker" OR "kubernete" OR "cloud" OR "AWS" OR "Azure" OR "heroku" ) AND '
     }
+    developer_b = {
+        # High: Asks for the job title or a professional of the tech, max seniority or fullstack
+        3 : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "fullstack") AND ',
+        # Mid: Asks for the job title or a professional of the tech, max or mid seniority, and the appropriate stack
+        2 : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND ("senior" OR "mid" {stackdict[stack]}) AND ',
+        # Low: Asks for the job title or professional of the tech
+        1 : f'("developer" OR "coder" OR "software engineer" OR "{tech} developer" OR "{tech} engineer") AND '
+    }
     techlead_b = {
         # High: Asks for project leadership or leadership in the technology and max seniority
         3 : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND ',
@@ -69,6 +89,24 @@ def booleanmaker(tech1,tech2,job,language,level):
         2 : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND ',
         # Low: Asks for project leadership or in the tech
         1 : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech} lead" OR "{tech} leader") AND '
+    }
+    # in the case of two technologies being available
+    if tech1 and tech2: 
+        developer_b = {
+        # High: Asks for the job title or a professional of the tech, max seniority or fullstack
+        3 : f'("developer" OR "coder" OR "software engineer" OR "{tech1} developer" OR "{tech1} engineer" OR "{tech2} developer" OR "{tech2} engineer") AND ("senior" OR "fullstack") AND ',
+        # Mid: Asks for the job title or a professional of the tech, max or mid seniority, and the appropriate stack
+        2 : f'("developer" OR "coder" OR "software engineer" OR "{tech1} developer" OR "{tech1} engineer" OR "{tech2} developer" OR "{tech2} engineer") AND ("senior" OR "mid" {stackdict[stack]}) AND ',
+        # Low: Asks for the job title or professional of the tech
+        1 : f'("developer" OR "coder" OR "software engineer" OR "{tech1} developer" OR "{tech1} engineer" OR "{tech2} developer" OR "{tech2} engineer") AND '
+    }
+    techlead_b = {
+        # High: Asks for project leadership or leadership in the technology and max seniority
+        3 : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech1} lead" OR "{tech1} leader" OR "{tech2} lead" OR "{tech2} leader") AND ',
+        # Mid: Asks for projects leadership or in the tech, asks for max or mid seniority
+        2 : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech1} lead" OR "{tech1} leader" OR "{tech2} lead" OR "{tech2} leader") AND ',
+        # Low: Asks for project leadership or in the tech
+        1 : f'("techlead" OR "tech lead" OR "technical lead" OR "project management" OR "{tech1} lead" OR "{tech1} leader" OR "{tech2} lead" OR "{tech2} leader") AND '
     }
     # Dict of all jobs and their phrases to be used in the boolean
     job_b = {'developer': developer_b,

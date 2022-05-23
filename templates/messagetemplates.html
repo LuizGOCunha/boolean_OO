@@ -1,9 +1,9 @@
 <h1>TEMPLATES</h1>
-<form onsubmit="createTemplate(); return false">
-    <label for="id_textarea">Your message here:</label>
+<form id="template-form" onsubmit="createTemplate(); return false">
+    <label for="textarea">Your message here:</label>
 </br>
-    <textarea id="id_textarea" rows="10" cols="100"></textarea>
-    <input type="submit" value="Done">
+    <textarea id="textarea" name="textarea" rows="10" cols="100"></textarea>
+    <button id="add-template">Done</button>
 </form>
 
 <div id="new">
@@ -11,11 +11,14 @@
 </div>
 
 <script>
-    function createTemplate() {
-        var textArea = document.getElementById["id_textarea"].value;
-        var template = document.createElement("p");
-        template.appendChild(textArea);
-        var element = document.getElementById("new");
-        element.appendChild(template);
+    var addTemplateButton = document.querySelector("#add-template");
+    var templateForm = document.querySelector("#template-form");
+    var template = templateForm.textarea;
+
+
+    addTemplateButton.addEventListener("click", createTemplate);
+       
+    function createTemplate(template) {
+        console.log("test");
     }
 </script>

@@ -5,11 +5,13 @@ class BooleanForm (forms.Form):
     techchoices1 =(
         ("python", "Python"),
         ("react", "React"),
+        ("react native","React Native"),
         ("","None")
     )
     techchoices2 =(
         ("python", "Python"),
         ("react", "React"),
+        ("react native","React Native"),
         ("","None")
     )
     jobchoices = (
@@ -18,8 +20,8 @@ class BooleanForm (forms.Form):
         ("devops", "Dev Ops")
     )
     languagechoices = (
-        ("portuguese","Portuguese"),
         ("english", "English"),
+        ("portuguese","Portuguese"),
         ("spanish", "Spanish")
     )
     levelchoices = (
